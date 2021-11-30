@@ -20,7 +20,7 @@ struct WeatherView: View {
                 
                                 
                 VStack(spacing: 16) {
-                    WeatherDayView(dayOfWeek: "Tuesday", imageName: "cloud.sun.fill", temp: 33)
+                    WeatherDayView(dayOfWeek: viewModel.weatherDescription, imageName: "cloud.sun.fill", temp: 33)
                     WeatherDayView(dayOfWeek: "Wednesday", imageName: "wind.snow", temp: 28)
                     WeatherDayView(dayOfWeek: "Thursday", imageName: "cloud.sun.fill", temp: 25)
                     WeatherDayView(dayOfWeek: "Friday", imageName: "cloud.sun.fill", temp: 12)

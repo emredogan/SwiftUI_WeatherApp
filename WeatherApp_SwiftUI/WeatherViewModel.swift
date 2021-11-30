@@ -25,7 +25,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
                 self.cityName = weather.city
                 print("LOAD TEMP IS \(weather.temperature)")
                 self.temperature = "\(weather.temperature)"
-                //self.weatherDescription = weather.description.capitalized
+                self.weatherDescription = weather.description
                 //self.weatherIcon
             }
         }

@@ -81,7 +81,7 @@ extension WeatherService: CLLocationManagerDelegate {
 struct APIResponse: Decodable {
     let name: String
     let main: APIMain
-    //let weather: APIWeather
+    let weather: [APIWeather]
 }
 
 struct APIMain: Decodable {
@@ -89,11 +89,11 @@ struct APIMain: Decodable {
 }
 struct APIWeather: Decodable { // Decodable: We want to convert(decode) the JSON type to our own custom type
     let description: String
-    let iconName: String
+    //let iconName: String
     
-    enum CodingKeys: String, CodingKey {
+    /*enum CodingKeys: String, CodingKey {
         case description
         case iconName = "main"
-    }
+    } */
     
 }
