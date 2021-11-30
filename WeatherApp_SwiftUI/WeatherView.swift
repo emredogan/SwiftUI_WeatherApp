@@ -16,7 +16,7 @@ struct WeatherView: View {
             BackgroundView(isNight: $isNight)
             VStack(spacing: 8) {
                 CityTextView(cityName: viewModel.cityName)
-                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temp: viewModel.temperature)
+                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature)
                 
                                 
                 VStack(spacing: 16) {

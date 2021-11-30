@@ -11,8 +11,7 @@ public struct Weather {
     let city: String
     let temperature: String
     let description: String
-    /*
-    let iconName: String */
+    let id: Int
     
     init(response: APIResponse) {
         city = response.name
@@ -20,7 +19,8 @@ public struct Weather {
         print("TEMP IS \(temperature)")
        
         description = response.weather[0].description.capitalized
-        /*
-        iconName = response.weather.iconName */
+        id = response.weather[0].id
+        print("ID is \(id)")
+        
     }
 }
