@@ -7,14 +7,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
+    @ObservedObject var viewModel: WeatherViewModel
+    
     @State private var isNight = true
     var body: some View {
         ZStack {
             BackgroundView(isNight: $isNight)
             VStack(spacing: 8) {
-                CityTextView(cityName: "Istanbul TR")
-                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temp: 32)
+                CityTextView(cityName: viewModel.cityName)
+                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temp: viewModel.temperature)
                 
                                 
                 VStack(spacing: 16) {
@@ -38,13 +40,13 @@ struct ContentView: View {
                    
             }
             
-        }
+        }.onAppear(perform: viewModel.refresh)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
     }
 }
 
@@ -94,7 +96,7 @@ struct CityTextView: View {
 
 struct MainWeatherStatusView: View {
     var imageName: String
-    var temp: Int
+    var temp: String
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: imageName)
@@ -103,7 +105,7 @@ struct MainWeatherStatusView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
             
-            Text("\(temp)")
+            Text("\(temp) ˚C")
                 .font(.system(size: 70, weight: .medium, design: .default))
                 .foregroundColor(.white)
                 
