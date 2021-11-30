@@ -29,8 +29,12 @@ public final class WeatherService: NSObject {
     private func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D) {
         print("Starting the data request")
         // Guard makes sure the urlString has a value. If not just return.
-        guard let urlString =  "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
-                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return} // addingPercentEncoding: Returns a new string by replacing all chars not in the urlQueryAllowed set of chars
+       /*  guard let urlString =  "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return} // addingPercentEncoding: Returns a new string by replacing all chars not in the urlQueryAllowed set of chars */
+        
+        guard let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=37&lon=31&exclude=hourly,minutely&appid=\(API_KEY)&units=metric"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        else {return}
         
         print("Trying the network request with the following link \(urlString)")
         
@@ -79,13 +83,14 @@ extension WeatherService: CLLocationManagerDelegate {
 }
 
 struct APIResponse: Decodable {
-    let name: String
-    let main: APIMain
-    let weather: [APIWeather]
+    let timezone: String
+    let current: APICurrent
 }
 
-struct APIMain: Decodable {
+struct APICurrent: Decodable {
     let temp: Double
+    let dt: Int
+    let weather: [APIWeather]
 }
 struct APIWeather: Decodable { // Decodable: We want to convert(decode) the JSON type to our own custom type
     let description: String

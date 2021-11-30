@@ -16,11 +16,11 @@ struct WeatherView: View {
             BackgroundView(isNight: $isNight)
             VStack(spacing: 8) {
                 CityTextView(cityName: viewModel.cityName)
-                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature)
+                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature, description: viewModel.weatherDescription)
                 
                                 
                 VStack(spacing: 16) {
-                    WeatherDayView(dayOfWeek: viewModel.weatherDescription, imageName: "cloud.sun.fill", temp: 33)
+                    WeatherDayView(dayOfWeek:viewModel.date , imageName: "cloud.sun.fill", temp: 22)
                     WeatherDayView(dayOfWeek: "Wednesday", imageName: "wind.snow", temp: 28)
                     WeatherDayView(dayOfWeek: "Thursday", imageName: "cloud.sun.fill", temp: 25)
                     WeatherDayView(dayOfWeek: "Friday", imageName: "cloud.sun.fill", temp: 12)
@@ -97,6 +97,7 @@ struct CityTextView: View {
 struct MainWeatherStatusView: View {
     var imageName: String
     var temp: String
+    var description: String
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: imageName)
@@ -104,6 +105,10 @@ struct MainWeatherStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
+            
+            Text(description)
+                .font(.system(size: 35, weight: .medium, design: .default))
+                .foregroundColor(.white)
             
             Text("\(temp) ˚C")
                 .font(.system(size: 70, weight: .medium, design: .default))

@@ -12,15 +12,14 @@ public struct Weather {
     let temperature: String
     let description: String
     let id: Int
+    let date: Int
     
     init(response: APIResponse) {
-        city = response.name
-        temperature = "\(Int(response.main.temp))"
-        print("TEMP IS \(temperature)")
-       
-        description = response.weather[0].description.capitalized
-        id = response.weather[0].id
-        print("ID is \(id)")
-        
+        city = response.timezone
+        temperature = "\(Int(response.current.temp))"
+        description = response.current.weather[0].description.capitalized
+        id = response.current.weather[0].id
+        date = response.current.dt
+
     }
 }

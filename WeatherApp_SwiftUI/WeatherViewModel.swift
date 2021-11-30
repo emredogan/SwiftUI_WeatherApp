@@ -13,6 +13,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     @Published var weatherDescription: String = "--"
     @Published var weatherIcon: String = "😂"
     @Published var weatherID: Int = 501
+    @Published var date: String = "Today"
     
     public let weatherService: WeatherService
     
@@ -30,8 +31,19 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
                 self.weatherDescription = weather.description
                 self.weatherID = weather.id
                 self.weatherIcon = self.getWeatherIcon(condition: weather.id)
+                self.date = self.convertDate(unixTimestamp: weather.date)
             }
         }
+    }
+    
+    public func convertDate(unixTimestamp: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(unixTimestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "yyyy-MM-dd" //Specify your format that you want
+        let strDate = dateFormatter.string(from: date)
+        return strDate
     }
     
     public func getWeatherIcon(condition: Int) -> String {
