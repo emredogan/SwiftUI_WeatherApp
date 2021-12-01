@@ -20,11 +20,11 @@ struct WeatherView: View {
                 
                                 
                 VStack(spacing: 16) {
-                    WeatherDayView(dayOfWeek:viewModel.date , imageName: "cloud.sun.fill", temp: 22)
-                    WeatherDayView(dayOfWeek: "Wednesday", imageName: "wind.snow", temp: 28)
-                    WeatherDayView(dayOfWeek: "Thursday", imageName: "cloud.sun.fill", temp: 25)
-                    WeatherDayView(dayOfWeek: "Friday", imageName: "cloud.sun.fill", temp: 12)
-                    WeatherDayView(dayOfWeek: "Saturday", imageName: "cloud.fog.fill", temp: 22)
+                    WeatherDayView(dayOfWeek:viewModel.firstDate , imageName: viewModel.firstWeatherIcon, temp: Int(viewModel.firstTemp))
+                    WeatherDayView(dayOfWeek: viewModel.secondDate, imageName: viewModel.secondWeatherIcon, temp: Int(viewModel.secondTemp))
+                    WeatherDayView(dayOfWeek: viewModel.thirdDate, imageName: viewModel.thirdWeatherIcon, temp: Int(viewModel.thirdTemp))
+                    WeatherDayView(dayOfWeek: viewModel.fourthDate, imageName: viewModel.fourthWeatherIcon, temp: Int(viewModel.fourthTemp))
+                    WeatherDayView(dayOfWeek: viewModel.fifthDate, imageName: viewModel.fifthWeatherIcon, temp: Int(viewModel.fifthTemp))
 
                 }
                 Spacer()

@@ -85,6 +85,7 @@ extension WeatherService: CLLocationManagerDelegate {
 struct APIResponse: Decodable {
     let timezone: String
     let current: APICurrent
+    let daily: [APIDaily]
 }
 
 struct APICurrent: Decodable {
@@ -95,4 +96,10 @@ struct APICurrent: Decodable {
 struct APIWeather: Decodable { // Decodable: We want to convert(decode) the JSON type to our own custom type
     let description: String
     let id:Int
+}
+
+struct APIDaily: Decodable {
+    let dt: Int
+    let temp: [String:Double]
+    let weather: [APIWeather]
 }
