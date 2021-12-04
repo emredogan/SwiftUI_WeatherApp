@@ -16,17 +16,15 @@ struct WeatherView: View {
             BackgroundView(isNight: $isNight)
             VStack(spacing: 8) {
                 CityTextView(cityName: viewModel.cityName)
-                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature, description: viewModel.weatherDescription)
+                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature, description: viewModel.weatherDescription)   
                 
-                                
-                VStack(spacing: 16) {
-                    WeatherDayView(dayOfWeek:viewModel.firstDate , imageName: viewModel.firstWeatherIcon, temp: Int(viewModel.firstTemp))
-                    WeatherDayView(dayOfWeek: viewModel.secondDate, imageName: viewModel.secondWeatherIcon, temp: Int(viewModel.secondTemp))
-                    WeatherDayView(dayOfWeek: viewModel.thirdDate, imageName: viewModel.thirdWeatherIcon, temp: Int(viewModel.thirdTemp))
-                    WeatherDayView(dayOfWeek: viewModel.fourthDate, imageName: viewModel.fourthWeatherIcon, temp: Int(viewModel.fourthTemp))
-                    WeatherDayView(dayOfWeek: viewModel.fifthDate, imageName: viewModel.fifthWeatherIcon, temp: Int(viewModel.fifthTemp))
-
+                
+                List(viewModel.weatherList, id: \.id) { item in
+                    WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
                 }
+                .background(Color.yellow)
+                
+            
                 Spacer()
                 
                 Button {
@@ -37,7 +35,7 @@ struct WeatherView: View {
                 }
                 
                 Spacer()
-                   
+                
             }
             
         }.onAppear(perform: viewModel.refresh)
@@ -51,23 +49,45 @@ struct WeatherView_Previews: PreviewProvider {
 }
 
 struct WeatherDayView: View {
-    var dayOfWeek: String
-    var imageName: String
-    var temp: Int
+    var dayOfWeek: String = "Thursday"
+    var imageName: String = "sun.max.fill"
+    var temp: Int = 25
+    var nightTemp: Int = 0
+    var description: String
     
     var body: some View {
         HStack {
-            Text(dayOfWeek)
-                .font(.system(size: 16, weight: .medium, design: .default))
-                .foregroundColor(.white)
             Image(systemName: imageName)
                 .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30, height: 30)
-            Text("\(temp)")
-                .font(.system(size: 16, weight: .medium, design: .default))
-                .foregroundColor(.white)
+            
+            HStack(alignment: .top) {
+                VStack {
+                    Text(dayOfWeek)
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .foregroundColor(.black)
+                    Text(description)
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .foregroundColor(.black)
+                    
+                }
+                
+                VStack {
+                    Text("\(temp)")
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .foregroundColor(.black)
+                    Text("\(nightTemp)")
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .foregroundColor(.black)
+                }
+                
+            }
+            
+            
+            
+            
         }
     }
 }
@@ -113,7 +133,7 @@ struct MainWeatherStatusView: View {
             Text("\(temp) ˚C")
                 .font(.system(size: 70, weight: .medium, design: .default))
                 .foregroundColor(.white)
-                
+            
         }
     }
 }

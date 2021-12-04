@@ -15,35 +15,8 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     @Published var weatherID: Int = 501
     @Published var date: String = "Today"
     
-    @Published var firstDate: String = ""
-    @Published var firstTemp: Double = 0.0
-    @Published var firstID: Int = 0
-    @Published var firstWeatherIcon: String = "😂"
+    @Published var weatherList =  [WeatherItem]()
 
-    
-
-
-    @Published var secondDate: String = ""
-    @Published var secondTemp: Double = 0.0
-    @Published var secondID: Int = 0
-    @Published var secondWeatherIcon: String = "😂"
-    
-    
-    @Published var thirdDate: String = ""
-    @Published var thirdTemp: Double = 0.0
-    @Published var thirdID: Int = 0
-    @Published var thirdWeatherIcon: String = "😂"
-    
-    @Published var fourthDate: String = ""
-    @Published var fourthTemp: Double = 0.0
-    @Published var fourthID: Int = 0
-    @Published var fourthWeatherIcon: String = "😂"
-    
-    
-    @Published var fifthDate: String = ""
-    @Published var fifthTemp: Double = 0.0
-    @Published var fifthID: Int = 0
-    @Published var fifthWeatherIcon: String = "😂"
     
     public let weatherService: WeatherService
     
@@ -56,6 +29,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     public func refresh() {
         weatherService.loadWeatherData { weather in
             DispatchQueue.main.async {
+                self.weatherList.removeAll()
                 self.cityName = weather.city
                 self.temperature = "\(weather.temperature)"
                 self.weatherDescription = weather.description
@@ -63,34 +37,29 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
                 self.weatherIcon = self.getWeatherIcon(condition: weather.id)
                 self.date = self.convertDate(unixTimestamp: weather.date)
                 
-                self.firstDate = self.convertDate(unixTimestamp: weather.firstDate)
-                self.firstTemp = weather.firstTemp
-                self.firstID = weather.firstID
-                self.firstWeatherIcon = self.getWeatherIcon(condition: self.firstID)
-
-
-                self.secondDate = self.convertDate(unixTimestamp: weather.secondDate)
-                self.secondTemp = weather.secondTemp
-                self.secondID = weather.secondID
-                self.secondWeatherIcon = self.getWeatherIcon(condition: self.secondID)
+                let firstWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.firstDate), temp: weather.firstTemp, weatherID: weather.firstID, icon: self.getWeatherIcon(condition: weather.firstID), description: weather.firstDescription)
                 
+                self.weatherList.append(firstWeatherItem)
                 
-                self.thirdDate = self.convertDate(unixTimestamp: weather.thirdDate)
-                self.thirdTemp = weather.thirdTemp
-                self.thirdID = weather.thirdID
-                self.thirdWeatherIcon = self.getWeatherIcon(condition: self.thirdID)
+                let secondWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.secondDate), temp: weather.secondTemp, weatherID: weather.secondID, icon: self.getWeatherIcon(condition: weather.secondID), description: weather.secondDescription)
                 
+                self.weatherList.append(secondWeatherItem)
                 
-                self.fourthDate = self.convertDate(unixTimestamp: weather.fourthDate)
-                self.fourthTemp = weather.fourthTemp
-                self.fourthID = weather.fourthID
-                self.fourthWeatherIcon = self.getWeatherIcon(condition: self.fourthID)
+                let thirdWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.thirdDate), temp: weather.thirdTemp, weatherID: weather.thirdID, icon: self.getWeatherIcon(condition: weather.thirdID), description: weather.thirdDescription)
                 
+                self.weatherList.append(thirdWeatherItem)
                 
-                self.fifthDate = self.convertDate(unixTimestamp: weather.fifthDate)
-                self.fifthTemp = weather.fourthTemp
-                self.fifthID = weather.fourthID
-                self.fifthWeatherIcon = self.getWeatherIcon(condition: self.fifthID)
+                let fourthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fourthDate), temp: weather.fourthTemp, weatherID: weather.fourthID, icon: self.getWeatherIcon(condition: weather.fourthID), description: weather.fourthDescription)
+                
+                self.weatherList.append(fourthWeatherItem)
+                
+                let fifthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fifthDate), temp: weather.fifthTemp, weatherID: weather.fifthID, icon: self.getWeatherIcon(condition: weather.fifthID), description: weather.fifthDescription)
+                
+                self.weatherList.append(fifthWeatherItem)
+                
+                let sixthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.sixthDate), temp: weather.sixthTemp, weatherID: weather.sixthID, icon: self.getWeatherIcon(condition: weather.sixthID), description: weather.sixthDescription)
+                
+                self.weatherList.append(sixthWeatherItem)
 
             }
         }
@@ -101,7 +70,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "yyyy-MM-dd" //Specify your format that you want
+        dateFormatter.dateFormat = "dd-MM-YYYY" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         return strDate
     }
@@ -129,4 +98,23 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     }
     
     
+}
+
+struct WeatherItem: Identifiable {
+    var id = UUID()
+    var date: String = ""
+    var temp: Double = 0.0
+    var nightTemp: Double = 0.0
+    var weatherID: Int = 0
+    var icon: String = "😂"
+    var description: String = ""
+    
+    init(date: String, temp: Double, weatherID: Int, icon: String, description: String) {
+        self.date = date
+        self.temp = temp
+        self.nightTemp = temp
+        self.weatherID = weatherID
+        self.icon = icon
+        self.description = description
+    }
 }
