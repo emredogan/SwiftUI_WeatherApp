@@ -27,11 +27,20 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     
     
     public func refresh() {
+        weatherService.loadCityData { city in
+            print("PRINTING - LOAD CITY DATA")
+            DispatchQueue.main.async {
+                self.cityName = city
+
+            }
+        }
         weatherService.loadWeatherData { weather in
+            print("PRINTING - LOAD WEATHER DATA")
+
             DispatchQueue.main.async {
                 self.weatherList.removeAll()
                 self.date = self.convertDate(unixTimestamp: weather.date)
-                self.cityName = weather.city
+                //self.cityName = weather.city
                 self.temperature = "\(weather.temperature)"
                 self.weatherDescription = weather.description
                 self.weatherID = weather.id

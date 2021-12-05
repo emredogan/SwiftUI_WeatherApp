@@ -120,7 +120,7 @@ struct MainWeatherStatusView: View {
             .background(Color.orange)
                 
             
-            VStack(alignment: .trailing, spacing: 17) {
+            VStack(spacing: 14) {
                 Image(systemName: imageName)
                     .renderingMode(.original)
                     .resizable()
@@ -133,7 +133,7 @@ struct MainWeatherStatusView: View {
                 
             }.frame(
                 maxWidth: .infinity,
-                alignment: .topTrailing
+                alignment: .center
             )
             
         }   .padding()
