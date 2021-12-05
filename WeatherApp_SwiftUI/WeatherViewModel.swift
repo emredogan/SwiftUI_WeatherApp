@@ -30,6 +30,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
         weatherService.loadWeatherData { weather in
             DispatchQueue.main.async {
                 self.weatherList.removeAll()
+                self.date = self.convertDate(unixTimestamp: weather.date)
                 self.cityName = weather.city
                 self.temperature = "\(weather.temperature)"
                 self.weatherDescription = weather.description
@@ -70,7 +71,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "dd-MM-YYYY" //Specify your format that you want
+        dateFormatter.dateFormat = "EEE,MMMM dd" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         return strDate
     }

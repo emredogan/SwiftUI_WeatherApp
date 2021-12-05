@@ -10,36 +10,28 @@ import SwiftUI
 struct WeatherView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
-    @State private var isNight = true
     var body: some View {
-        ZStack {
-            BackgroundView(isNight: $isNight)
-            VStack(spacing: 8) {
-                CityTextView(cityName: viewModel.cityName)
-                MainWeatherStatusView(imageName: isNight ? viewModel.weatherIcon : viewModel.weatherIcon, temp: viewModel.temperature, description: viewModel.weatherDescription)   
+            ZStack {
                 
-                
-                List(viewModel.weatherList, id: \.id) { item in
-                    WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
-                }
-                .background(Color.yellow)
-                
-            
-                Spacer()
-                
-                Button {
-                    isNight.toggle()
+                VStack {
+                    HStack {
+                        MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName)
+                    }
+                    .frame(width: .infinity, height: 250, alignment: .center)
+                    .background(.orange)
                     
-                } label : {
-                    WeatherButton(title: "Change Day Time", textColor: .blue, backgroundColor: .white)
+                    
+                    List(viewModel.weatherList, id: \.id) { item in
+                        WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
+                    }
                 }
                 
-                Spacer()
-                
-            }
-            
-        }.onAppear(perform: viewModel.refresh)
+            }.onAppear(perform: viewModel.refresh)
+               
+        
+        
     }
+
 }
 
 struct WeatherView_Previews: PreviewProvider {
@@ -92,49 +84,66 @@ struct WeatherDayView: View {
     }
 }
 
-struct BackgroundView: View {
-    
-    @Binding var isNight:Bool
-    
-    var body: some View {
-        LinearGradient(gradient:Gradient(colors:  [isNight ? .black : .blue, isNight ? .gray : .white]),
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-            .ignoresSafeArea()
-    }
-}
-
 struct CityTextView: View {
     var cityName: String
     var body: some View {
-        Text(cityName)
-            .font(.system(size: 32, weight: .medium, design: .default))
-            .foregroundColor(.white)
-            .padding()
+        VStack {
+            Text(cityName)
+                .font(.system(size: 15, weight: .medium, design: .default))
+                .underline()
+                .foregroundColor(.white)
+        }.background(Color.orange)
+        
     }
 }
 
 struct MainWeatherStatusView: View {
     var imageName: String
     var temp: String
+    var date: String
     var description: String
+    var cityName: String
     var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: imageName)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 180, height: 180)
+        
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 30) {
+                Text(date)
+                    .bold()
+                    .foregroundColor(.white)
+                Text("\(temp)˚C")
+                    .font(.system(size: 50, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                    .bold()
+                CityTextView(cityName: cityName)
+                
+            }
+            .background(Color.orange)
+                
             
-            Text(description)
-                .font(.system(size: 35, weight: .medium, design: .default))
-                .foregroundColor(.white)
+            VStack(alignment: .trailing, spacing: 17) {
+                Image(systemName: imageName)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120, height: 120)
+                Text(description)
+                    .font(.system(size: 15, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                
+                
+            }.frame(
+                maxWidth: .infinity,
+                alignment: .topTrailing
+            )
             
-            Text("\(temp) ˚C")
-                .font(.system(size: 70, weight: .medium, design: .default))
-                .foregroundColor(.white)
-            
-        }
+        }   .padding()
+
+        .frame(
+            maxWidth: .infinity,
+            alignment: .topLeading
+        )
+    
+        
     }
 }
 
