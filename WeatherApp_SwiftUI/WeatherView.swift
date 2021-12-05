@@ -11,27 +11,30 @@ struct WeatherView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
-            ZStack {
-                
-                VStack {
-                    HStack {
-                        MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName)
-                    }
-                    .frame(width: .infinity, height: 250, alignment: .center)
-                    .background(.orange)
-                    
-                    
-                    List(viewModel.weatherList, id: \.id) { item in
-                        WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
-                    }
+        ZStack {
+            
+            VStack (spacing: 0){
+                HStack {
+                    MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName)
                 }
+                .frame(width: .infinity, height: 250, alignment: .center)
+                .background(.orange)
                 
-            }.onAppear(perform: viewModel.refresh)
-               
+                
+                List(viewModel.weatherList, id: \.id) { item in
+                    WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
+                    
+                }
+                .listStyle(PlainListStyle())
+                
+            }.frame(alignment: .topTrailing)
+            
+        }.onAppear(perform: viewModel.refresh)
+        
         
         
     }
-
+    
 }
 
 struct WeatherView_Previews: PreviewProvider {
@@ -48,39 +51,38 @@ struct WeatherDayView: View {
     var description: String
     
     var body: some View {
-        HStack {
+        
+        HStack(alignment: .top) {
             Image(systemName: imageName)
                 .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 30, height: 30)
+                .frame(width: 60, height: 60)
             
-            HStack(alignment: .top) {
-                VStack {
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
                     Text(dayOfWeek)
-                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .font(.system(size: 16, weight: .bold, design: .default))
                         .foregroundColor(.black)
                     Text(description)
-                        .font(.system(size: 16, weight: .medium, design: .default))
-                        .foregroundColor(.black)
-                    
-                }
-                
-                VStack {
-                    Text("\(temp)")
-                        .font(.system(size: 16, weight: .medium, design: .default))
-                        .foregroundColor(.black)
-                    Text("\(nightTemp)")
-                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .font(.system(size: 16, weight: .light, design: .default))
                         .foregroundColor(.black)
                 }
                 
+                Spacer()
+                
+                VStack(spacing: 10) {
+                    Text("\(temp)˚C")
+                        .font(.system(size: 16, weight: .bold, design: .default))
+                        .foregroundColor(.black)
+                    Text("\(nightTemp)˚C")
+                        .font(.system(size: 16, weight: .light, design: .default))
+                        .foregroundColor(.black)
+                }
             }
-            
-            
-            
-            
         }
+        .listRowBackground(Color(red: 201 / 255, green: 217 / 255, blue: 181 / 255))
+        .frame(width: .infinity, height: 75)
     }
 }
 
@@ -118,7 +120,7 @@ struct MainWeatherStatusView: View {
                 
             }
             .background(Color.orange)
-                
+            
             
             VStack(spacing: 14) {
                 Image(systemName: imageName)
@@ -137,12 +139,12 @@ struct MainWeatherStatusView: View {
             )
             
         }   .padding()
-
-        .frame(
-            maxWidth: .infinity,
-            alignment: .topLeading
-        )
-    
+        
+            .frame(
+                maxWidth: .infinity,
+                alignment: .topLeading
+            )
+        
         
     }
 }

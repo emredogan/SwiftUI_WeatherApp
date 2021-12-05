@@ -75,38 +75,38 @@ public struct Weather {
         
         secondDate = response.daily[1].dt
         secondTemp = response.daily[1].temp["day"] ?? 0.0
-        secondNightTemp = response.daily[0].temp["night"] ?? 0.0
+        secondNightTemp = response.daily[1].temp["night"] ?? 0.0
         secondID = response.daily[1].weather[0].id
         secondDescription = response.daily[1].weather[0].description.capitalized
 
         
         thirdDate = response.daily[2].dt
         thirdTemp = response.daily[2].temp["day"] ?? 0.0
-        thirdNightTemp = response.daily[0].temp["night"] ?? 0.0
+        thirdNightTemp = response.daily[2].temp["night"] ?? 0.0
         thirdID = response.daily[2].weather[0].id
-        thirdDescription = response.daily[1].weather[0].description.capitalized
+        thirdDescription = response.daily[2].weather[0].description.capitalized
 
         
         
         fourthDate = response.daily[3].dt
         fourthTemp = response.daily[3].temp["day"] ?? 0.0
-        fourthNightTemp = response.daily[0].temp["night"] ?? 0.0
+        fourthNightTemp = response.daily[3].temp["night"] ?? 0.0
         fourthID = response.daily[3].weather[0].id
-        fourthDescription = response.daily[1].weather[0].description.capitalized
+        fourthDescription = response.daily[3].weather[0].description.capitalized
 
         
         fifthDate = response.daily[4].dt
         fifthTemp = response.daily[4].temp["day"] ?? 0.0
-        fifthNightTemp = response.daily[0].temp["night"] ?? 0.0
+        fifthNightTemp = response.daily[4].temp["night"] ?? 0.0
         fifthID = response.daily[4].weather[0].id
-        fifthDescription = response.daily[1].weather[0].description.capitalized
+        fifthDescription = response.daily[4].weather[0].description.capitalized
 
         
         sixthDate = response.daily[5].dt
         sixthTemp = response.daily[5].temp["day"] ?? 0.0
         sixthNightTemp = response.daily[0].temp["night"] ?? 0.0
         sixthID = response.daily[5].weather[0].id
-        sixthDescription = response.daily[1].weather[0].description.capitalized
+        sixthDescription = response.daily[5].weather[0].description.capitalized
 
 
     }
