@@ -240,6 +240,7 @@ struct PlacePickers: UIViewControllerRepresentable {
         
         func wasCancelled(_ viewController: GMSAutocompleteViewController) {
             parent.presentationMode.wrappedValue.dismiss()
+            parent.showPlaceSearch = false
         }
         
     }
