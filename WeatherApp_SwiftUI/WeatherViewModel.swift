@@ -47,27 +47,27 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
                 self.weatherIcon = self.getWeatherIcon(condition: weather.id)
                 self.date = self.convertDate(unixTimestamp: weather.date)
                 
-                let firstWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.firstDate), temp: weather.firstTemp, nightTemp: weather.firstNightTemp, weatherID: weather.firstID, icon: self.getWeatherIcon(condition: weather.firstID), description: weather.firstDescription)
+                let firstWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.firstDay.date), temp: weather.firstDay.temp, nightTemp: weather.firstDay.nightTemp, weatherID: weather.firstDay.ID, icon: self.getWeatherIcon(condition: weather.firstDay.ID), description: weather.firstDay.description)
                 
                 self.weatherList.append(firstWeatherItem)
                 
-                let secondWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.secondDate), temp: weather.secondTemp, nightTemp: weather.secondNightTemp, weatherID: weather.secondID, icon: self.getWeatherIcon(condition: weather.secondID), description: weather.secondDescription)
+                let secondWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.secondDay.date), temp: weather.secondDay.temp, nightTemp: weather.secondDay.nightTemp, weatherID: weather.secondDay.ID, icon: self.getWeatherIcon(condition: weather.secondDay.ID), description: weather.secondDay.description)
                 
                 self.weatherList.append(secondWeatherItem)
                 
-                let thirdWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.thirdDate), temp: weather.thirdTemp, nightTemp: weather.thirdNightTemp, weatherID: weather.thirdID, icon: self.getWeatherIcon(condition: weather.thirdID), description: weather.thirdDescription)
+                let thirdWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.thirdDay.date), temp: weather.thirdDay.temp, nightTemp: weather.thirdDay.nightTemp, weatherID: weather.thirdDay.ID, icon: self.getWeatherIcon(condition: weather.thirdDay.ID), description: weather.thirdDay.description)
                 
                 self.weatherList.append(thirdWeatherItem)
                 
-                let fourthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fourthDate), temp: weather.fourthTemp, nightTemp: weather.fourthNightTemp, weatherID: weather.fourthID, icon: self.getWeatherIcon(condition: weather.fourthID), description: weather.fourthDescription)
+                let fourthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fourthDay.date), temp: weather.fourthDay.temp, nightTemp: weather.fourthDay.nightTemp, weatherID: weather.fourthDay.ID, icon: self.getWeatherIcon(condition: weather.fourthDay.ID), description: weather.fourthDay.description)
                 
                 self.weatherList.append(fourthWeatherItem)
                 
-                let fifthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fifthDate), temp: weather.fifthTemp, nightTemp: weather.fifthNightTemp, weatherID: weather.fifthID, icon: self.getWeatherIcon(condition: weather.fifthID), description: weather.fifthDescription)
+                let fifthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fifthDay.date), temp: weather.fifthDay.temp, nightTemp: weather.fifthDay.nightTemp, weatherID: weather.fifthDay.ID, icon: self.getWeatherIcon(condition: weather.fifthDay.ID), description: weather.fifthDay.description)
                 
                 self.weatherList.append(fifthWeatherItem)
                 
-                let sixthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.sixthDate), temp: weather.sixthTemp, nightTemp: weather.sixthTemp, weatherID: weather.sixthID, icon: self.getWeatherIcon(condition: weather.sixthID), description: weather.sixthDescription)
+                let sixthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.sixtDay.date), temp: weather.sixtDay.temp, nightTemp: weather.sixtDay.nightTemp, weatherID: weather.sixtDay.ID, icon: self.getWeatherIcon(condition: weather.sixtDay.ID), description: weather.sixtDay.description)
                 
                 self.weatherList.append(sixthWeatherItem)
 
