@@ -56,7 +56,7 @@ public final class WeatherService: NSObject {
         locationManager.startUpdatingLocation()
     }
     
-    private func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D) {
+    public func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D) {
         print("Starting the data request")
         print("Starting the city request")
         location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)

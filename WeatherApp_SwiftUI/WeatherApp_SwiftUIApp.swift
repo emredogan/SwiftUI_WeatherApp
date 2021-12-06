@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import GooglePlaces
 
 @main
 struct WeatherApp_SwiftUIApp: App {
+    
+    init() {
+        GMSPlacesClient.provideAPIKey("AIzaSyAxap_9cAlrmPpzZHL274R4b3bWrEbdQmw")
+        print("START GOOGLE PLACES")
+    }
+    
     var body: some Scene {
         WindowGroup {
             let weatherService = WeatherService()
@@ -16,4 +23,6 @@ struct WeatherApp_SwiftUIApp: App {
             WeatherView(viewModel: viewModel)
         }
     }
+    
+    
 }

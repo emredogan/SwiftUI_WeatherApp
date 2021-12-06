@@ -6,32 +6,49 @@
 //
 
 import SwiftUI
+import GooglePlaces
+
 
 struct WeatherView: View {
     @ObservedObject var viewModel: WeatherViewModel
+    @State private var showPlaceSearch = false
+    @State private var address = "Istanbul"
+    @State private var coordinates = CLLocationCoordinate2D(latitude: 28, longitude: 28)
     
     var body: some View {
-        ZStack {
-            
-            VStack (spacing: 0){
-                HStack {
-                    MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName)
-                }
-                .frame(width: .infinity, height: 250, alignment: .center)
-                .background(.orange)
-                
-                
-                List(viewModel.weatherList, id: \.id) { item in
-                    WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
+            ZStack {
+                VStack (spacing: 0){
+                    if showPlaceSearch {
+                        PlacePickers(address: $address, coordinates: $coordinates, showPlaceSearch: $showPlaceSearch)
+                    }
                     
-                }
-                .listStyle(PlainListStyle())
+                    
+                    
+                    HStack {
+                        MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName, showPlaceSearch: $showPlaceSearch)
+                    }
+                    .frame(width: .infinity, height: 250, alignment: .center)
+                    .background(.orange)
+                    
+                    
+                    List(viewModel.weatherList, id: \.id) { item in
+                        WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
+                        
+                    }
+                    .listStyle(PlainListStyle())
+                    
+                }.frame(alignment: .topTrailing)
                 
-            }.frame(alignment: .topTrailing)
+            }
+
             
-        }.onAppear(perform: viewModel.refresh)
-        
-        
+            .onChange(of: coordinates) { value in
+                print("CHANGED")
+                viewModel.weatherService.makeCityDataRequest(forCoordinates: value)
+                viewModel.weatherService.makeDataRequest(forCoordinates: value)
+                
+            }
+            .onAppear(perform: viewModel.refresh)
         
     }
     
@@ -88,6 +105,8 @@ struct WeatherDayView: View {
 
 struct CityTextView: View {
     var cityName: String
+    @Binding var showPlaceSearch: Bool
+
     var body: some View {
         VStack {
             Text(cityName)
@@ -95,6 +114,10 @@ struct CityTextView: View {
                 .underline()
                 .foregroundColor(.white)
         }.background(Color.orange)
+            .onTapGesture {
+                print("TAPPED")
+                showPlaceSearch = true
+            }
         
     }
 }
@@ -105,6 +128,7 @@ struct MainWeatherStatusView: View {
     var date: String
     var description: String
     var cityName: String
+    @Binding var showPlaceSearch: Bool
     var body: some View {
         
         HStack(alignment: .top) {
@@ -116,7 +140,7 @@ struct MainWeatherStatusView: View {
                     .font(.system(size: 50, weight: .medium, design: .default))
                     .foregroundColor(.white)
                     .bold()
-                CityTextView(cityName: cityName)
+                CityTextView(cityName: cityName, showPlaceSearch: $showPlaceSearch)
                 
             }
             .background(Color.orange)
@@ -148,4 +172,79 @@ struct MainWeatherStatusView: View {
         
     }
 }
+
+
+
+extension CLLocationCoordinate2D: Equatable {}
+
+public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+    return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+}
+
+
+struct PlacePickers: UIViewControllerRepresentable {
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var address: String
+    @Binding var coordinates: CLLocationCoordinate2D
+    @Binding var showPlaceSearch: Bool
+
+
+    
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PlacePickers>) -> GMSAutocompleteViewController {
+        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = context.coordinator
+        
+        
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+                                                  UInt(GMSPlaceField.coordinate.rawValue))
+        autocompleteController.placeFields = fields
+        
+        let filter = GMSAutocompleteFilter()
+        filter.type = .city
+        autocompleteController.autocompleteFilter = filter
+        return autocompleteController
+    }
+    
+    func updateUIViewController(_ uiViewController: GMSAutocompleteViewController, context: UIViewControllerRepresentableContext<PlacePickers>) {
+    }
+    
+    class Coordinator: NSObject, UINavigationControllerDelegate, GMSAutocompleteViewControllerDelegate {
+        
+        var parent: PlacePickers
+        
+        init(_ parent: PlacePickers) {
+            self.parent = parent
+        }
+        
+        func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+            DispatchQueue.main.async {
+                print(place.description.description as Any)
+                self.parent.address =  place.name!
+                self.parent.coordinates =  place.coordinate
+                self.parent.presentationMode.wrappedValue.dismiss()
+            }
+            
+            parent.showPlaceSearch = false
+            
+        }
+        
+        func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+            print("Error: ", error.localizedDescription)
+        }
+        
+        func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+        
+    }
+}
+
+
+
 
