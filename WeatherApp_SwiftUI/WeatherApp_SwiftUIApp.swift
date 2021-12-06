@@ -12,7 +12,20 @@ import GooglePlaces
 struct WeatherApp_SwiftUIApp: App {
     
     init() {
-        GMSPlacesClient.provideAPIKey("AIzaSyAxap_9cAlrmPpzZHL274R4b3bWrEbdQmw")
+        var keys: NSDictionary?
+
+        if let path = Bundle.main.path(forResource: "GooglePlace-Info", ofType: "plist") {
+               keys = NSDictionary(contentsOfFile: path)
+           }
+            if let dict = keys {
+                let googleAPIKEY = (dict["API_KEY"] as? String)!
+            
+                // Initialize GooglePlaces.
+                GMSPlacesClient.provideAPIKey(googleAPIKEY)
+
+            }
+        
+        
     }
     
     var body: some Scene {
