@@ -11,7 +11,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     @Published var cityName: String = "City Name"
     @Published var temperature: String = "--"
     @Published var weatherDescription: String = "--"
-    @Published var weatherIcon: String = "😂"
+    @Published var weatherIcon: String = ""
     @Published var weatherID: Int = 501
     @Published var date: String = "Today"
     

@@ -13,7 +13,6 @@ struct WeatherApp_SwiftUIApp: App {
     
     init() {
         GMSPlacesClient.provideAPIKey("AIzaSyAxap_9cAlrmPpzZHL274R4b3bWrEbdQmw")
-        print("START GOOGLE PLACES")
     }
     
     var body: some Scene {
