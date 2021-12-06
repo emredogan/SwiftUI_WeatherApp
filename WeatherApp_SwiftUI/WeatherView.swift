@@ -116,7 +116,10 @@ struct CityTextView: View {
         }.background(Color.orange)
             .onTapGesture {
                 print("TAPPED")
-                showPlaceSearch = true
+                withAnimation{
+                    showPlaceSearch.toggle()
+                                }
+            
             }
         
     }
@@ -230,7 +233,10 @@ struct PlacePickers: UIViewControllerRepresentable {
                 self.parent.presentationMode.wrappedValue.dismiss()
             }
             
-            parent.showPlaceSearch = false
+            withAnimation{
+                parent.showPlaceSearch.toggle()
+                            }
+            
             
         }
         
@@ -240,7 +246,10 @@ struct PlacePickers: UIViewControllerRepresentable {
         
         func wasCancelled(_ viewController: GMSAutocompleteViewController) {
             parent.presentationMode.wrappedValue.dismiss()
-            parent.showPlaceSearch = false
+            //parent.showPlaceSearch = false
+            withAnimation{
+                parent.showPlaceSearch.toggle()
+                            }
         }
         
     }
