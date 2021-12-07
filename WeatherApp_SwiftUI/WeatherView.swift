@@ -98,7 +98,7 @@ struct WeatherDayView: View {
                 }
             }
         }
-        .listRowBackground(Color(red: 201 / 255, green: 217 / 255, blue: 181 / 255))
+        .listRowBackground(Color(red: 211 / 255, green: 211 / 255, blue: 211 / 255))
         .frame(width: .infinity, height: 75)
     }
 }

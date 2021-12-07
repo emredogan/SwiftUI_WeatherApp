@@ -42,7 +42,7 @@ public final class WeatherService: NSObject {
             guard let city = city, let country = country, error == nil else { return }
             print("PRINTING CITY")
             print(city + ", " + country)  // Rio de Janeiro, Brazil
-            self.cityNameCompletionHandler!(city)
+            self.cityNameCompletionHandler!("\(city), \(country)")
         }
 
         
