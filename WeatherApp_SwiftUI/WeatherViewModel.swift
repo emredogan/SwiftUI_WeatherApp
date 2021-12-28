@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class WeatherViewModel: ObservableObject { // Should be observed by the view
     @Published var cityName: String = "City Name"
     @Published var temperature: String = "--"
     @Published var weatherDescription: String = "--"
-    @Published var weatherIcon: String = ""
+    @Published var weatherIcon: String = "cloud.fill"
     @Published var weatherID: Int = 501
     @Published var date: String = "Today"
     
@@ -28,51 +29,38 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     
     public func refresh() {
         weatherService.loadCityData { city in
-            print("PRINTING - LOAD CITY DATA")
             DispatchQueue.main.async {
                 self.cityName = city
 
             }
         }
-        weatherService.loadWeatherData { weather in
-            print("PRINTING - LOAD WEATHER DATA")
+        weatherService.loadWeatherData { result in
+            switch result {
+            case .success(let weather):
+                DispatchQueue.main.async {
+                    self.weatherList.removeAll()
+                    self.date = self.convertDate(unixTimestamp: weather.date)
+                    self.temperature = "\(weather.temperature)"
+                    self.weatherDescription = weather.description
+                    self.weatherID = weather.id
+                    self.weatherIcon = self.getWeatherIcon(condition: weather.id)
+                    self.date = self.convertDate(unixTimestamp: weather.date)
+                    
+                    for i in 0...5 {
+                        let weatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.days[i].date), temp: weather.days[i].temp, nightTemp: weather.days[i].nightTemp, weatherID: weather.days[i].ID, icon: self.getWeatherIcon(condition: weather.days[i].ID), description: weather.days[i].description)
+                        
+                        self.weatherList.append(weatherItem)
 
-            DispatchQueue.main.async {
-                self.weatherList.removeAll()
-                self.date = self.convertDate(unixTimestamp: weather.date)
-                //self.cityName = weather.city
-                self.temperature = "\(weather.temperature)"
-                self.weatherDescription = weather.description
-                self.weatherID = weather.id
-                self.weatherIcon = self.getWeatherIcon(condition: weather.id)
-                self.date = self.convertDate(unixTimestamp: weather.date)
-                
-                let firstWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.firstDay.date), temp: weather.firstDay.temp, nightTemp: weather.firstDay.nightTemp, weatherID: weather.firstDay.ID, icon: self.getWeatherIcon(condition: weather.firstDay.ID), description: weather.firstDay.description)
-                
-                self.weatherList.append(firstWeatherItem)
-                
-                let secondWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.secondDay.date), temp: weather.secondDay.temp, nightTemp: weather.secondDay.nightTemp, weatherID: weather.secondDay.ID, icon: self.getWeatherIcon(condition: weather.secondDay.ID), description: weather.secondDay.description)
-                
-                self.weatherList.append(secondWeatherItem)
-                
-                let thirdWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.thirdDay.date), temp: weather.thirdDay.temp, nightTemp: weather.thirdDay.nightTemp, weatherID: weather.thirdDay.ID, icon: self.getWeatherIcon(condition: weather.thirdDay.ID), description: weather.thirdDay.description)
-                
-                self.weatherList.append(thirdWeatherItem)
-                
-                let fourthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fourthDay.date), temp: weather.fourthDay.temp, nightTemp: weather.fourthDay.nightTemp, weatherID: weather.fourthDay.ID, icon: self.getWeatherIcon(condition: weather.fourthDay.ID), description: weather.fourthDay.description)
-                
-                self.weatherList.append(fourthWeatherItem)
-                
-                let fifthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.fifthDay.date), temp: weather.fifthDay.temp, nightTemp: weather.fifthDay.nightTemp, weatherID: weather.fifthDay.ID, icon: self.getWeatherIcon(condition: weather.fifthDay.ID), description: weather.fifthDay.description)
-                
-                self.weatherList.append(fifthWeatherItem)
-                
-                let sixthWeatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.sixtDay.date), temp: weather.sixtDay.temp, nightTemp: weather.sixtDay.nightTemp, weatherID: weather.sixtDay.ID, icon: self.getWeatherIcon(condition: weather.sixtDay.ID), description: weather.sixtDay.description)
-                
-                self.weatherList.append(sixthWeatherItem)
+                    }
 
+                }
+                
+            case .failure(let error):
+                print(error)
+                
             }
         }
+        
     }
     
     public func convertDate(unixTimestamp: Int) -> String {

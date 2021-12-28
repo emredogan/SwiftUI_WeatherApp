@@ -14,13 +14,7 @@ public struct Weather {
     let id: Int
     let date: Int
     
-    let firstDay: DailyWeatherModel
-    let secondDay: DailyWeatherModel
-    let thirdDay: DailyWeatherModel
-    let fourthDay: DailyWeatherModel
-    let fifthDay: DailyWeatherModel
-    let sixtDay: DailyWeatherModel
-
+    var days = [DailyWeatherModel]()
 
     
     init(response: APIResponse) {
@@ -30,18 +24,12 @@ public struct Weather {
         id = response.current.weather[0].id
         date = response.current.dt
         
-        firstDay = DailyWeatherModel(date: response.daily[0].dt, temp: response.daily[0].temp["day"] ?? 0.0, nightTemp: response.daily[0].temp["night"] ?? 0.0, ID: response.daily[0].weather[0].id, description: response.daily[0].weather[0].description.capitalized)
         
-        secondDay = DailyWeatherModel(date: response.daily[1].dt, temp: response.daily[1].temp["day"] ?? 0.0, nightTemp: response.daily[1].temp["night"] ?? 0.0, ID: response.daily[1].weather[0].id, description: response.daily[1].weather[0].description.capitalized)
+        for i in 0...5 {
+            let day = DailyWeatherModel(date: response.daily[i].dt, temp: response.daily[i].temp["day"] ?? 0.0, nightTemp: response.daily[i].temp["night"] ?? 0.0, ID: response.daily[i].weather[0].id, description: response.daily[i].weather[0].description.capitalized)
+            days.append(day)
+        }
         
-        thirdDay = DailyWeatherModel(date: response.daily[2].dt, temp: response.daily[2].temp["day"] ?? 0.0, nightTemp: response.daily[2].temp["night"] ?? 0.0, ID: response.daily[2].weather[0].id, description: response.daily[2].weather[0].description.capitalized)
-        
-        fourthDay = DailyWeatherModel(date: response.daily[3].dt, temp: response.daily[3].temp["day"] ?? 0.0, nightTemp: response.daily[3].temp["night"] ?? 0.0, ID: response.daily[3].weather[0].id, description: response.daily[3].weather[0].description.capitalized)
-        
-        fifthDay = DailyWeatherModel(date: response.daily[4].dt, temp: response.daily[4].temp["day"] ?? 0.0, nightTemp: response.daily[4].temp["night"] ?? 0.0, ID: response.daily[4].weather[0].id, description: response.daily[4].weather[0].description.capitalized)
-        
-        sixtDay = DailyWeatherModel(date: response.daily[5].dt, temp: response.daily[5].temp["day"] ?? 0.0, nightTemp: response.daily[0].temp["night"] ?? 0.0, ID: response.daily[5].weather[0].id, description: response.daily[5].weather[0].description.capitalized)
-
     }
 }
 
