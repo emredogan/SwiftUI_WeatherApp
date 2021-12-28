@@ -60,9 +60,8 @@ public final class WeatherService: NSObject {
         
     }
     
-    public func loadWeatherData(_ completionHandler:@escaping ((Weather)-> Void)) { // Escaping is usually used in network calls. Closure is ESCAPING the lifetime of this function. When you make a network call, it takes time. So it needs to outlive the function lifetime and wait. It lives in the memory.
+    func loadWeatherData(_ completionHandler:@escaping ((Result<Weather, MyCustomError>)-> Void)) { // Escaping is usually used in network calls. Closure is ESCAPING the lifetime of this function. When you make a network call, it takes time. So it needs to outlive the function lifetime and wait. It lives in the memory.
         print("Starting load weather data")
-
         self.completionHandler = completionHandler
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -78,13 +77,18 @@ public final class WeatherService: NSObject {
        /*  guard let urlString =  "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return} // addingPercentEncoding: Returns a new string by replacing all chars not in the urlQueryAllowed set of chars */
         
-        guard let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly,minutely&appid=\(API_KEY)&units=metric"
+        guard let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly,minutely&appid=\(API_KEY_WEATHER)&units=metric"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        else {return}
+        else {
+            completionHandler!(.failure(.JSONERROR))
+            return
+        }
         
         print("Trying the network request with the following link \(urlString)")
         
         guard let url = URL(string: urlString) else {
+            completionHandler!(.failure(.JSONERROR))
+            return
             print("Can't parse the url")
 
             return}
@@ -92,6 +96,7 @@ public final class WeatherService: NSObject {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data = data else {
                 print("Error or data is nill")
+                self.completionHandler!(.failure(.JSONERROR))
                 return} // Make sure that the error is nil and the data exists
             
 
@@ -99,8 +104,7 @@ public final class WeatherService: NSObject {
                   let weatherObject = try JSONDecoder().decode(APIResponse.self, from: data)
 
                 print("decoded response is \(weatherObject)")
-                  self.completionHandler?(Weather(response: weatherObject))
-                  
+                  self.completionHandler!(.success(Weather(response: weatherObject)))
               } catch let jsonError as NSError {
                 print("JSON decode failed: \(jsonError.localizedDescription)")
                   print("JSON decode failed: \(jsonError)")
