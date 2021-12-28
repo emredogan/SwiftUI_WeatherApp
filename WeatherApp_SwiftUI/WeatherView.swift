@@ -27,7 +27,7 @@ struct WeatherView: View {
                     HStack {
                         MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName, showPlaceSearch: $showPlaceSearch)
                     }
-                    .frame(width: .infinity, height: 250, alignment: .center)
+                    .frame(width: nil, height: 250, alignment: .center)
                     .background(.orange)
                     
                     
@@ -99,7 +99,7 @@ struct WeatherDayView: View {
             }
         }
         .listRowBackground(Color(red: 211 / 255, green: 211 / 255, blue: 211 / 255))
-        .frame(width: .infinity, height: 75)
+        .frame(width: nil, height: 75)
     }
 }
 
@@ -246,7 +246,6 @@ struct PlacePickers: UIViewControllerRepresentable {
         
         func wasCancelled(_ viewController: GMSAutocompleteViewController) {
             parent.presentationMode.wrappedValue.dismiss()
-            //parent.showPlaceSearch = false
             withAnimation{
                 parent.showPlaceSearch.toggle()
                             }
