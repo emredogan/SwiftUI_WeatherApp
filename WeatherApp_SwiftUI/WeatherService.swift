@@ -88,7 +88,6 @@ public final class WeatherService: NSObject {
         
         guard let url = URL(string: urlString) else {
             completionHandler!(.failure(.JSONERROR))
-            return
             print("Can't parse the url")
 
             return}
