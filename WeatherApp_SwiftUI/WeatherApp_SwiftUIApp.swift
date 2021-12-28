@@ -13,7 +13,8 @@ struct WeatherApp_SwiftUIApp: App {
     
     init() {
         var keys: NSDictionary?
-
+        
+        // API KEYS saved in the plist file.
         if let path = Bundle.main.path(forResource: "GooglePlace-Info", ofType: "plist") {
                keys = NSDictionary(contentsOfFile: path)
            }

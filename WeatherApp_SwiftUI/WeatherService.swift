@@ -13,14 +13,26 @@ import MapKit
 
 public final class WeatherService: NSObject {
     private let locationManager = CLLocationManager()
-    private let API_KEY = "9d8b950fe81cd20073b4791eea6cf783"
-    private var completionHandler: ((Weather)-> Void)?
+    private var API_KEY_WEATHER = ""
+    private var completionHandler: ((Result<Weather, MyCustomError>)-> Void)?
+    
     private var cityNameCompletionHandler: ((String)-> Void)?
 
     var location = CLLocation(latitude: -22.963451, longitude: -43.198242)
     
     public override init() {
         super.init()
+        var keys: NSDictionary?
+        
+        // API KEYS saved in the plist file.
+        if let path = Bundle.main.path(forResource: "GooglePlace-Info", ofType: "plist") {
+               keys = NSDictionary(contentsOfFile: path)
+           }
+            if let dict = keys {
+                API_KEY_WEATHER = (dict["API_KEY_WEATHER"] as? String)!
+
+
+            }
         locationManager.delegate = self
     }
     
