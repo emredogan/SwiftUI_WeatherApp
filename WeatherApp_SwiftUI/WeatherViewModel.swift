@@ -9,20 +9,14 @@ import Foundation
 import SwiftUI
 
 public class WeatherViewModel: ObservableObject { // Should be observed by the view
-    @Published var cityName: String = "City Name"
-    @Published var temperature: String = "--"
-    @Published var weatherDescription: String = "--"
-    @Published var weatherIcon: String = "cloud.fill"
-    @Published var weatherID: Int = 501
-    @Published var date: String = "Today"
-    
-    @Published var weatherList =  [WeatherItem]()
+    @Published public var mainWeather: MainWeather
 
     
     public let weatherService: WeatherService
     
     public init(weatherService: WeatherService) {
         self.weatherService = weatherService
+        self.mainWeather = MainWeather()
     }
     
     
@@ -30,7 +24,7 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     public func refresh() {
         weatherService.loadCityData { city in
             DispatchQueue.main.async {
-                self.cityName = city
+                self.mainWeather.cityName = city
 
             }
         }
@@ -38,18 +32,18 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
             switch result {
             case .success(let weather):
                 DispatchQueue.main.async {
-                    self.weatherList.removeAll()
-                    self.date = self.convertDate(unixTimestamp: weather.date)
-                    self.temperature = "\(weather.temperature)"
-                    self.weatherDescription = weather.description
-                    self.weatherID = weather.id
-                    self.weatherIcon = self.getWeatherIcon(condition: weather.id)
-                    self.date = self.convertDate(unixTimestamp: weather.date)
+                    self.mainWeather.weatherList.removeAll()
+                    self.mainWeather.date = self.convertDate(unixTimestamp: weather.date)
+                    self.mainWeather.temperature = "\(weather.temperature)"
+                    self.mainWeather.weatherDescription = weather.description
+                    self.mainWeather.weatherID = weather.id
+                    self.mainWeather.weatherIcon = self.getWeatherIcon(condition: weather.id)
+                    self.mainWeather.date = self.convertDate(unixTimestamp: weather.date)
                     
                     for i in 0...5 {
                         let weatherItem = WeatherItem(date: self.convertDate(unixTimestamp: weather.days[i].date), temp: weather.days[i].temp, nightTemp: weather.days[i].nightTemp, weatherID: weather.days[i].ID, icon: self.getWeatherIcon(condition: weather.days[i].ID), description: weather.days[i].description)
                         
-                        self.weatherList.append(weatherItem)
+                        self.mainWeather.weatherList.append(weatherItem)
 
                     }
 
@@ -116,3 +110,5 @@ struct WeatherItem: Identifiable {
         self.description = description
     }
 }
+
+

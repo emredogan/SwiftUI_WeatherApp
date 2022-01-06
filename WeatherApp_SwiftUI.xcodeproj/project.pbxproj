@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632565262787A4E90038688D /* MainWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632565252787A4E90038688D /* MainWeatherModel.swift */; };
 		635D2059274FE53800607FAA /* WeatherApp_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635D2058274FE53800607FAA /* WeatherApp_SwiftUIApp.swift */; };
 		635D205B274FE53800607FAA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635D205A274FE53800607FAA /* WeatherView.swift */; };
 		635D205D274FE53A00607FAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635D205C274FE53A00607FAA /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		0470AF9BA4BCFAB04913EC57 /* Pods_WeatherApp_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		632565252787A4E90038688D /* MainWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherModel.swift; sourceTree = "<group>"; };
 		635D2055274FE53800607FAA /* SwiftWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D2058274FE53800607FAA /* WeatherApp_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp_SwiftUIApp.swift; sourceTree = "<group>"; };
 		635D205A274FE53800607FAA /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				63F43A602754F38300982B19 /* WeatherModel.swift */,
 				636021C3275E8A2100382508 /* DailyWeatherModel.swift */,
 				639B22B5277A834B003BE8B7 /* MyCustomError.swift */,
+				632565252787A4E90038688D /* MainWeatherModel.swift */,
 			);
 			path = WeatherApp_SwiftUI;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				635D205B274FE53800607FAA /* WeatherView.swift in Sources */,
 				635D2059274FE53800607FAA /* WeatherApp_SwiftUIApp.swift in Sources */,
 				63F43A612754F38300982B19 /* WeatherModel.swift in Sources */,
+				632565262787A4E90038688D /* MainWeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

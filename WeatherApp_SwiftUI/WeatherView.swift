@@ -25,13 +25,13 @@ struct WeatherView: View {
                     
                     
                     HStack {
-                        MainWeatherStatusView(imageName:  viewModel.weatherIcon, temp: viewModel.temperature, date: viewModel.date , description: viewModel.weatherDescription, cityName:  viewModel.cityName, showPlaceSearch: $showPlaceSearch)
+                        MainWeatherStatusView(imageName:  viewModel.mainWeather.weatherIcon, temp: viewModel.mainWeather.temperature, date: viewModel.mainWeather.date , description: viewModel.mainWeather.weatherDescription, cityName:  viewModel.mainWeather.cityName, showPlaceSearch: $showPlaceSearch)
                     }
                     .frame(width: nil, height: 250, alignment: .center)
                     .background(.orange)
                     
                     
-                    List(viewModel.weatherList, id: \.id) { item in
+                    List(viewModel.mainWeather.weatherList, id: \.id) { item in
                         WeatherDayView(dayOfWeek:item.date , imageName: item.icon, temp: Int(item.temp), nightTemp: Int(item.nightTemp), description: item.description)
                         
                     }
