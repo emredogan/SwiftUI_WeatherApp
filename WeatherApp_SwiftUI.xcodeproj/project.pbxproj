@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		0470AF9BA4BCFAB04913EC57 /* Pods_WeatherApp_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		632565252787A4E90038688D /* MainWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherModel.swift; sourceTree = "<group>"; };
-		635D2055274FE53800607FAA /* SwiftWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		635D2055274FE53800607FAA /* Sunny Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sunny Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D2058274FE53800607FAA /* WeatherApp_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp_SwiftUIApp.swift; sourceTree = "<group>"; };
 		635D205A274FE53800607FAA /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		635D205C274FE53A00607FAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		635D2056274FE53800607FAA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				635D2055274FE53800607FAA /* SwiftWeather.app */,
+				635D2055274FE53800607FAA /* Sunny Weather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,7 +133,7 @@
 			);
 			name = WeatherApp_SwiftUI;
 			productName = WeatherApp_SwiftUI;
-			productReference = 635D2055274FE53800607FAA /* SwiftWeather.app */;
+			productReference = 635D2055274FE53800607FAA /* Sunny Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -367,7 +367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WeatherApp_SwiftUI/WeatherApp_SwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = BH7ATPEKS6;
 				ENABLE_PREVIEWS = YES;
@@ -384,9 +384,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.WeatherApp-SwiftUI";
-				PRODUCT_NAME = SwiftWeather;
+				PRODUCT_NAME = "Sunny Weather";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -402,7 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WeatherApp_SwiftUI/WeatherApp_SwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = BH7ATPEKS6;
 				ENABLE_PREVIEWS = YES;
@@ -419,9 +419,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.WeatherApp-SwiftUI";
-				PRODUCT_NAME = SwiftWeather;
+				PRODUCT_NAME = "Sunny Weather";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

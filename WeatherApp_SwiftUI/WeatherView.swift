@@ -49,7 +49,6 @@ struct WeatherView: View {
                 
             }
             .onAppear(perform: viewModel.refresh)
-        
     }
     
 }
@@ -112,7 +111,7 @@ struct CityTextView: View {
             Text(cityName)
                 .font(.system(size: 15, weight: .medium, design: .default))
                 .underline()
-                .foregroundColor(.white)
+                .foregroundColor(.blue)
         }.background(Color.orange)
             .onTapGesture {
                 print("TAPPED")

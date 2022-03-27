@@ -17,7 +17,6 @@ public final class WeatherService: NSObject {
     private var completionHandler: ((Result<Weather, MyCustomError>)-> Void)?
     
     private var cityNameCompletionHandler: ((String)-> Void)?
-
     var location = CLLocation(latitude: -22.963451, longitude: -43.198242)
     
     public override init() {
@@ -137,10 +136,18 @@ extension WeatherService: CLLocationManagerDelegate {
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationManager.startUpdatingLocation()
         print("CHANGEDD1",      locationManager.location?.coordinate)
+        if (locationManager.authorizationStatus == CLAuthorizationStatus.denied) {
+            // The user denied authorization
+            print("REJECTED PERMISSION")
+        } else if (locationManager.authorizationStatus == CLAuthorizationStatus.authorizedAlways) {
+            // The user accepted authorization
+            print("ACCEPTED PERMISSION")
+
+        } else if (locationManager.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse) {
+            print("ACCEPTED PERMISSION2")
+        }
     }
-    
-    
-    
+
 }
 
 struct APIResponse: Decodable {
