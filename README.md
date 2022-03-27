@@ -7,6 +7,8 @@ SwiftUI<br />
 SFSymbols<br />
 Result Type-: Cleaner network calls<br />
 Google Places API<br />
+Open Weather API<br />
+
 
 API information is stored in the local plist file and not published to GitHub.<br />
 
