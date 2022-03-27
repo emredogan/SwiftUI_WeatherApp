@@ -42,6 +42,8 @@ public final class WeatherService: NSObject {
 
         
         self.cityNameCompletionHandler = completionHandler
+        locationManager.distanceFilter = 100.0; // Will notify the LocationManager every 100 meters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
@@ -50,11 +52,11 @@ public final class WeatherService: NSObject {
     public func makeCityDataRequest(forCoordinates coordinates: CLLocationCoordinate2D) {
         location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         
-        location.fetchCityAndCountry { city, country, error in
-            guard let city = city, let country = country, error == nil else { return }
+        location.fetchCityAndCountry {adminArea, city, country, error in
+            guard let city = city, let country = country, let adminArea = adminArea, error == nil else { return }
             print("PRINTING CITY")
             print(city + ", " + country)  // Rio de Janeiro, Brazil
-            self.cityNameCompletionHandler!("\(city), \(country)")
+            self.cityNameCompletionHandler!("\(city), \(adminArea), \(country)")
         }
 
         
@@ -121,6 +123,8 @@ extension WeatherService: CLLocationManagerDelegate {
     public func locationManager (
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]) {
+            print("CHANGEDD2",      locationManager.location?.coordinate)
+
             guard let location = locations.first else {return}
             makeDataRequest(forCoordinates: location.coordinate)
             makeCityDataRequest(forCoordinates: location.coordinate)
@@ -129,6 +133,13 @@ extension WeatherService: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Something went wrong: \(error.localizedDescription) ")
     }
+    
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        locationManager.startUpdatingLocation()
+        print("CHANGEDD1",      locationManager.location?.coordinate)
+    }
+    
+    
     
 }
 
@@ -155,7 +166,7 @@ struct APIDaily: Decodable {
 }
 
 extension CLLocation {
-    func fetchCityAndCountry(completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
-        CLGeocoder().reverseGeocodeLocation(self) { completion($0?.first?.locality, $0?.first?.country, $1) }
+    func fetchCityAndCountry(completion: @escaping (_ administrativeArea: String?,_ locality: String?, _ country:  String?, _ error: Error?) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(self) { completion($0?.first?.administrativeArea, $0?.first?.locality, $0?.first?.country, $1) }
     }
 }

@@ -60,7 +60,8 @@ public class WeatherViewModel: ObservableObject { // Should be observed by the v
     public func convertDate(unixTimestamp: Int) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(unixTimestamp))
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
+        dateFormatter.timeZone = TimeZone(abbreviation: localTimeZoneAbbreviation) //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "EEE,MMMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
