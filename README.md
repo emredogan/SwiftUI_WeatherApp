@@ -8,12 +8,15 @@ SFSymbols<br />
 Result Type-: Cleaner network calls<br />
 Google Places API<br />
 Open Weather API<br />
+UI testing using XCTest<br />
 
 
 API information is stored in the local plist file and not published to GitHub.<br />
 
 # Screenshots
+
 [![Simulator-Screen-Shot-i-Phone-13-mini-2022-01-06-at-23-04-26.png](https://i.postimg.cc/gkxRn0pV/Simulator-Screen-Shot-i-Phone-13-mini-2022-01-06-at-23-04-26.png)](https://postimg.cc/dLKDfwL3)
+
 [![Simulator-Screen-Shot-i-Phone-13-mini-2022-01-06-at-23-04-37.png](https://i.postimg.cc/mDTCDNZk/Simulator-Screen-Shot-i-Phone-13-mini-2022-01-06-at-23-04-37.png)](https://postimg.cc/kVhBYSbP)
 
 First screenshot: Main weather data screen <br />
