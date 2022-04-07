@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "635D2054274FE53800607FAA"
-               BuildableName = "SwiftWeather.app"
+               BuildableName = "Sunny Weather.app"
                BlueprintName = "WeatherApp_SwiftUI"
                ReferencedContainer = "container:WeatherApp_SwiftUI.xcodeproj">
             </BuildableReference>
@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "63EEB18527FB629A0044D4B0"
+               BuildableName = "Sunny WeatherTests.xctest"
+               BlueprintName = "Sunny WeatherTests"
+               ReferencedContainer = "container:WeatherApp_SwiftUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "63828A3727FF2D2F00D6662A"
+               BuildableName = "Sunny WeatherUITests.xctest"
+               BlueprintName = "Sunny WeatherUITests"
+               ReferencedContainer = "container:WeatherApp_SwiftUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -45,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "635D2054274FE53800607FAA"
-            BuildableName = "SwiftWeather.app"
+            BuildableName = "Sunny Weather.app"
             BlueprintName = "WeatherApp_SwiftUI"
             ReferencedContainer = "container:WeatherApp_SwiftUI.xcodeproj">
          </BuildableReference>
@@ -66,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "635D2054274FE53800607FAA"
-            BuildableName = "SwiftWeather.app"
+            BuildableName = "Sunny Weather.app"
             BlueprintName = "WeatherApp_SwiftUI"
             ReferencedContainer = "container:WeatherApp_SwiftUI.xcodeproj">
          </BuildableReference>

@@ -14,12 +14,31 @@
 		635D2060274FE53A00607FAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635D205F274FE53A00607FAA /* Preview Assets.xcassets */; };
 		636021C4275E8A2100382508 /* DailyWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636021C3275E8A2100382508 /* DailyWeatherModel.swift */; };
 		636021C6275EB8DE00382508 /* GooglePlace-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636021C5275EB8DE00382508 /* GooglePlace-Info.plist */; };
+		63828A3B27FF2D2F00D6662A /* Sunny_WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63828A3A27FF2D2F00D6662A /* Sunny_WeatherUITests.swift */; };
+		63828A3D27FF2D2F00D6662A /* Sunny_WeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63828A3C27FF2D2F00D6662A /* Sunny_WeatherUITestsLaunchTests.swift */; };
 		639B22B6277A834B003BE8B7 /* MyCustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639B22B5277A834B003BE8B7 /* MyCustomError.swift */; };
 		63F43A5F2754F12A00982B19 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F43A5E2754F12A00982B19 /* WeatherService.swift */; };
 		63F43A612754F38300982B19 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F43A602754F38300982B19 /* WeatherModel.swift */; };
 		63F43A632754FBEA00982B19 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F43A622754FBEA00982B19 /* WeatherViewModel.swift */; };
 		8C95CF11900B3C713D434696 /* Pods_WeatherApp_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470AF9BA4BCFAB04913EC57 /* Pods_WeatherApp_SwiftUI.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		63828A3E27FF2D2F00D6662A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635D204D274FE53800607FAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 635D2054274FE53800607FAA;
+			remoteInfo = WeatherApp_SwiftUI;
+		};
+		63EEB18A27FB629A0044D4B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635D204D274FE53800607FAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 635D2054274FE53800607FAA;
+			remoteInfo = WeatherApp_SwiftUI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0470AF9BA4BCFAB04913EC57 /* Pods_WeatherApp_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,7 +51,11 @@
 		636021C3275E8A2100382508 /* DailyWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherModel.swift; sourceTree = "<group>"; };
 		636021C5275EB8DE00382508 /* GooglePlace-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GooglePlace-Info.plist"; sourceTree = "<group>"; };
 		6369C23A27F08EA9005D04DE /* WeatherApp_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp_SwiftUI.entitlements; sourceTree = "<group>"; };
+		63828A3827FF2D2F00D6662A /* Sunny WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sunny WeatherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63828A3A27FF2D2F00D6662A /* Sunny_WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sunny_WeatherUITests.swift; sourceTree = "<group>"; };
+		63828A3C27FF2D2F00D6662A /* Sunny_WeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sunny_WeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		639B22B5277A834B003BE8B7 /* MyCustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomError.swift; sourceTree = "<group>"; };
+		63EEB18627FB629A0044D4B0 /* Sunny WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sunny WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F43A5E2754F12A00982B19 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		63F43A602754F38300982B19 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		63F43A622754FBEA00982B19 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -46,6 +69,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C95CF11900B3C713D434696 /* Pods_WeatherApp_SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63828A3527FF2D2F00D6662A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EEB18327FB629A0044D4B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +111,7 @@
 			children = (
 				636021C5275EB8DE00382508 /* GooglePlace-Info.plist */,
 				635D2057274FE53800607FAA /* WeatherApp_SwiftUI */,
+				63828A3927FF2D2F00D6662A /* Sunny WeatherUITests */,
 				635D2056274FE53800607FAA /* Products */,
 				0E4B8DD34DD89F04AAAD6F78 /* Pods */,
 				0FC28160AC09229256B40EB1 /* Frameworks */,
@@ -84,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				635D2055274FE53800607FAA /* Sunny Weather.app */,
+				63EEB18627FB629A0044D4B0 /* Sunny WeatherTests.xctest */,
+				63828A3827FF2D2F00D6662A /* Sunny WeatherUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +154,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		63828A3927FF2D2F00D6662A /* Sunny WeatherUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63828A3A27FF2D2F00D6662A /* Sunny_WeatherUITests.swift */,
+				63828A3C27FF2D2F00D6662A /* Sunny_WeatherUITestsLaunchTests.swift */,
+			);
+			path = "Sunny WeatherUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,6 +185,42 @@
 			productReference = 635D2055274FE53800607FAA /* Sunny Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
+		63828A3727FF2D2F00D6662A /* Sunny WeatherUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63828A4227FF2D2F00D6662A /* Build configuration list for PBXNativeTarget "Sunny WeatherUITests" */;
+			buildPhases = (
+				63828A3427FF2D2F00D6662A /* Sources */,
+				63828A3527FF2D2F00D6662A /* Frameworks */,
+				63828A3627FF2D2F00D6662A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63828A3F27FF2D2F00D6662A /* PBXTargetDependency */,
+			);
+			name = "Sunny WeatherUITests";
+			productName = "Sunny WeatherUITests";
+			productReference = 63828A3827FF2D2F00D6662A /* Sunny WeatherUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		63EEB18527FB629A0044D4B0 /* Sunny WeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63EEB18E27FB629A0044D4B0 /* Build configuration list for PBXNativeTarget "Sunny WeatherTests" */;
+			buildPhases = (
+				63EEB18227FB629A0044D4B0 /* Sources */,
+				63EEB18327FB629A0044D4B0 /* Frameworks */,
+				63EEB18427FB629A0044D4B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63EEB18B27FB629A0044D4B0 /* PBXTargetDependency */,
+			);
+			name = "Sunny WeatherTests";
+			productName = "Sunny WeatherTests";
+			productReference = 63EEB18627FB629A0044D4B0 /* Sunny WeatherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -143,11 +228,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					635D2054274FE53800607FAA = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					63828A3727FF2D2F00D6662A = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 635D2054274FE53800607FAA;
+					};
+					63EEB18527FB629A0044D4B0 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 635D2054274FE53800607FAA;
 					};
 				};
 			};
@@ -165,6 +258,8 @@
 			projectRoot = "";
 			targets = (
 				635D2054274FE53800607FAA /* WeatherApp_SwiftUI */,
+				63EEB18527FB629A0044D4B0 /* Sunny WeatherTests */,
+				63828A3727FF2D2F00D6662A /* Sunny WeatherUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -177,6 +272,20 @@
 				635D2060274FE53A00607FAA /* Preview Assets.xcassets in Resources */,
 				635D205D274FE53A00607FAA /* Assets.xcassets in Resources */,
 				636021C6275EB8DE00382508 /* GooglePlace-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63828A3627FF2D2F00D6662A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EEB18427FB629A0044D4B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +349,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63828A3427FF2D2F00D6662A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63828A3B27FF2D2F00D6662A /* Sunny_WeatherUITests.swift in Sources */,
+				63828A3D27FF2D2F00D6662A /* Sunny_WeatherUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EEB18227FB629A0044D4B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63828A3F27FF2D2F00D6662A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 635D2054274FE53800607FAA /* WeatherApp_SwiftUI */;
+			targetProxy = 63828A3E27FF2D2F00D6662A /* PBXContainerItemProxy */;
+		};
+		63EEB18B27FB629A0044D4B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 635D2054274FE53800607FAA /* WeatherApp_SwiftUI */;
+			targetProxy = 63EEB18A27FB629A0044D4B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		635D2061274FE53A00607FAA /* Debug */ = {
@@ -429,6 +567,80 @@
 			};
 			name = Release;
 		};
+		63828A4027FF2D2F00D6662A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7ATPEKS6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.Sunny-WeatherUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeatherApp_SwiftUI;
+			};
+			name = Debug;
+		};
+		63828A4127FF2D2F00D6662A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7ATPEKS6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.Sunny-WeatherUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeatherApp_SwiftUI;
+			};
+			name = Release;
+		};
+		63EEB18C27FB629A0044D4B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7ATPEKS6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.Sunny-WeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sunny Weather.app/Sunny Weather";
+			};
+			name = Debug;
+		};
+		63EEB18D27FB629A0044D4B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7ATPEKS6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tikitakamobile.Sunny-WeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sunny Weather.app/Sunny Weather";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -446,6 +658,24 @@
 			buildConfigurations = (
 				635D2064274FE53A00607FAA /* Debug */,
 				635D2065274FE53A00607FAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63828A4227FF2D2F00D6662A /* Build configuration list for PBXNativeTarget "Sunny WeatherUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63828A4027FF2D2F00D6662A /* Debug */,
+				63828A4127FF2D2F00D6662A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63EEB18E27FB629A0044D4B0 /* Build configuration list for PBXNativeTarget "Sunny WeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63EEB18C27FB629A0044D4B0 /* Debug */,
+				63EEB18D27FB629A0044D4B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

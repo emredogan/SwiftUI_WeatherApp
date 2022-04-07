@@ -25,13 +25,13 @@ public final class WeatherService: NSObject {
         
         // API KEYS saved in the plist file.
         if let path = Bundle.main.path(forResource: "GooglePlace-Info", ofType: "plist") {
-               keys = NSDictionary(contentsOfFile: path)
-           }
-            if let dict = keys {
-                API_KEY_WEATHER = (dict["API_KEY_WEATHER"] as? String)!
-
-
-            }
+            keys = NSDictionary(contentsOfFile: path)
+        }
+        if let dict = keys {
+            API_KEY_WEATHER = (dict["API_KEY_WEATHER"] as? String)!
+            
+            
+        }
         locationManager.delegate = self
     }
     
@@ -73,13 +73,13 @@ public final class WeatherService: NSObject {
         print("Starting the city request")
         location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
         
-
+        
         // Guard makes sure the urlString has a value. If not just return.
-       /*  guard let urlString =  "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
-                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return} // addingPercentEncoding: Returns a new string by replacing all chars not in the urlQueryAllowed set of chars */
+        /*  guard let urlString =  "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
+         .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return} // addingPercentEncoding: Returns a new string by replacing all chars not in the urlQueryAllowed set of chars */
         
         guard let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly,minutely&appid=\(API_KEY_WEATHER)&units=metric"
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         else {
             completionHandler!(.failure(.JSONERROR))
             return
@@ -90,7 +90,7 @@ public final class WeatherService: NSObject {
         guard let url = URL(string: urlString) else {
             completionHandler!(.failure(.JSONERROR))
             print("Can't parse the url")
-
+            
             return}
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -122,8 +122,6 @@ extension WeatherService: CLLocationManagerDelegate {
     public func locationManager (
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]) {
-            print("CHANGEDD2",      locationManager.location?.coordinate)
-
             guard let location = locations.first else {return}
             makeDataRequest(forCoordinates: location.coordinate)
             makeCityDataRequest(forCoordinates: location.coordinate)
@@ -135,19 +133,18 @@ extension WeatherService: CLLocationManagerDelegate {
     
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationManager.startUpdatingLocation()
-        print("CHANGEDD1",      locationManager.location?.coordinate)
         if (locationManager.authorizationStatus == CLAuthorizationStatus.denied) {
             // The user denied authorization
             print("REJECTED PERMISSION")
         } else if (locationManager.authorizationStatus == CLAuthorizationStatus.authorizedAlways) {
             // The user accepted authorization
             print("ACCEPTED PERMISSION")
-
+            
         } else if (locationManager.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse) {
             print("ACCEPTED PERMISSION2")
         }
     }
-
+    
 }
 
 struct APIResponse: Decodable {
